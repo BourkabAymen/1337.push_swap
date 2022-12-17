@@ -1,15 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/16 13:04:02 by abourkab          #+#    #+#              #
+#    Updated: 2022/12/17 23:13:14 by abourkab         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= push_swap
 
-SRCS	= src/main.c \
-		src/input_check.c src/input_check_utils.c \
-		src/initialization.c \
-		src/stack.c \
-		src/swap.c src/push.c src/rotate.c src/reverse_rotate.c \
-		src/sort_tiny.c src/sort.c \
-		src/position.c src/cost.c src/do_move.c \
-		src/utils.c
+SRCS	= main.c \
+		input_check.c input_check_utils.c \
+		stack_to_stack_one.c \
+		stack_to_stack_two.c \
+		swap.c push.c rotate.c reverse_rotate.c \
+		sort_tiny.c\
+		stack.c fill.c \
+		utils.c ft_split.c sort.c sort_prime.c\
 
-OBJS		= $(SRCS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra

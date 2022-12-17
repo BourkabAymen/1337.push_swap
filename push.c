@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 17:05:01 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 21:59:41 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:07:45 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/16 23:15:03 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 /* push:
 *	Pushes the top element of src stack to the top of dest stack.

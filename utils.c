@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 13:40:24 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 22:00:14 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:09:51 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/16 23:59:59 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 /* free_stack:
 *	Frees each element in a given stack and sets the stack pointer to NULL.
@@ -84,16 +84,4 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
-}
-
-/* nb_abs:
-*	Returns the absolute value of a given number.
-*	The absolute value of a number is used to measure the distance of that
-*	number from 0, whether it is positive or negative (abs value of -6 is 6).
-*/
-int	nb_abs(int nb)
-{
-	if (nb < 0)
-		return (nb * -1);
-	return (nb);
 }

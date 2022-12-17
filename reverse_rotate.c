@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 17:26:52 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 21:59:46 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:08:14 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/16 23:15:41 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 /* rev_rotate:
 *	Brings the bottom element of a stack to the top.

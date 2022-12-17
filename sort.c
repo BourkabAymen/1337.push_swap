@@ -5,93 +5,126 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 13:32:10 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 22:00:02 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:08:35 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/17 18:58:11 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-
-/* push_all_save_three:
-*	Pushes all the elements of stack a into stack b, except the three last ones.
-*	Pushes the smaller values first, and then the larger values to help with
-*	sorting efficiency.
+#include "push_swap.h"
+/* to_tab_dupplicated:
+*   calls dupplicated_tab depending of the value of ac
+*   in other terms (we will split or not)
+*   this function is used to solve this case
+*   having for example 0 1 2 3 4 5 6 as arguments
+*   and having for example "0 1 2 3 4 5 6" as arguments
 */
-static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
+void	to_tab_dupplicated(int ac, int *tab, char **av)
 {
-	int	stack_size;
-	int	pushed;
-	int	i;
+	char	**av1;
+	int		len;
 
-	stack_size = get_stack_size(*stack_a);
-	pushed = 0;
-	i = 0;
-	while (stack_size > 6 && i < stack_size && pushed < stack_size / 2)
+	if (ac == 2)
 	{
-		if ((*stack_a)->index <= stack_size / 2)
+		av1 = ft_split(av[1], ' ');
+		len = ft_strlen_array_string(av1);
+		dupplicated_tab(tab, len);
+	}
+	if (ac < 2)
+		return ;
+	dupplicated_tab(tab, ac);
+}
+
+/* dupplicated_tab:
+*   checks if there is there is a dupplicated element in tab
+*	and exit
+*   this function is used to avoid this case
+*   having for example 01 and 1 (an error case)
+*/
+void	dupplicated_tab(int *tab, unsigned int size)
+{
+	unsigned int	i;
+	unsigned int	j;	
+
+	i = 0;
+	while (i < (size - 1))
+	{
+		j = i + 1;
+		while (j < (size - 2))
 		{
-			do_pb(stack_a, stack_b);
-			pushed++;
+			if (tab[i] == tab[j])
+			{
+				exit_error(NULL, NULL);
+			}
+			else
+				j++;
 		}
-		else
-			do_ra(stack_a);
 		i++;
 	}
-	while (stack_size - pushed > 3)
-	{
-		do_pb(stack_a, stack_b);
-		pushed++;
-	}
 }
 
-/* shift_stack:
-*	After the bulk of the stack is sorted, shifts stack a until the lowest
-*	value is at the top. If it is in the bottom half of the stack, reverse
-*	rotate it into position, otherwise rotate until it is at the top of the
-*	stack.
+/* to_tab_sorted:
+*   returns a tab filled with the stack_a elements
+*	sorts this tab (array of integers) by calling to_tab_sort.
+*   or to_tab_sort_prime depending on the of ac
 */
-static void	shift_stack(t_stack **stack_a)
+int	*to_tab_sorted(int ac, char **av)
 {
-	int	lowest_pos;
-	int	stack_size;
+	char	**av1;
+	int		len;
 
-	stack_size = get_stack_size(*stack_a);
-	lowest_pos = get_lowest_index_position(stack_a);
-	if (lowest_pos > stack_size / 2)
+	if (ac == 2)
 	{
-		while (lowest_pos < stack_size)
-		{
-			do_rra(stack_a);
-			lowest_pos++;
-		}
+		av1 = ft_split(av[1], ' ');
+		len = ft_strlen_array_string(av1);
+		return (to_tab_sort_prime(len, av1));
 	}
-	else
-	{
-		while (lowest_pos > 0)
-		{
-			do_ra(stack_a);
-			lowest_pos--;
-		}
-	}
+	if (ac < 2)
+		return (NULL);
+	return (to_tab_sort(ac, av));
 }
 
-/* sort:
-*	Sorting algorithm for a stack larger than 3.
-*		Push everything but 3 numbers to stack B.
-*		Sort the 3 numbers left in stack A.
-*		Calculate the most cost-effective move.
-*		Shift elements until stack A is in order.
+/* to_tab_sort:
+*   returns a tab filled with the stack_a elements
+*	sorts this tab (array of integers) by calling sort_int_tab.
+*   it is used when ac > 2
 */
-void	sort(t_stack **stack_a, t_stack **stack_b)
+int	*to_tab_sort(int ac, char **av)
 {
-	push_all_save_three(stack_a, stack_b);
-	tiny_sort(stack_a);
-	while (*stack_b)
+	int	i;
+	int	*tab;
+
+	i = 0;
+	tab = (int *)malloc ((ac - 1) * 4);
+	if (!tab)
+		return (NULL);
+	while (i < ac -1)
 	{
-		get_target_position(stack_a, stack_b);
-		get_cost(stack_a, stack_b);
-		do_cheapest_move(stack_a, stack_b);
+		tab[i] = ft_atoi(av[i + 1]);
+		i++;
 	}
-	if (!is_sorted(*stack_a))
-		shift_stack(stack_a);
+	sort_int_tab (tab, ac - 1);
+	return (tab);
+}
+
+/* to_tab_sort_prime:
+*   returns a tab filled with the stack_a elements
+*	sorts this tab (array of integers) by calling sort_int_tab.
+*   it is used when ac = 2
+*/
+int	*to_tab_sort_prime(int len, char **av)
+{
+	int	i;
+	int	*tab;
+
+	i = 0;
+	tab = (int *)malloc ((len) * 4);
+	if (!tab)
+		return (NULL);
+	while (i < len)
+	{
+		tab[i] = ft_atoi(av[i]);
+		i++;
+	}
+	sort_int_tab (tab, len);
+	return (tab);
 }

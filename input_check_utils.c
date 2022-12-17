@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 13:25:28 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 21:59:21 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:07:23 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/16 23:08:11 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-
+#include "push_swap.h"
 /* is_digit:
 *   Checks if the character is a digit.
 *   Return: 1 if the character is a digit, 0 if not.

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 13:27:24 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/11/29 21:59:27 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/16 13:07:11 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/16 23:10:13 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 /* arg_is_number:
 *   Checks if the argument is a number. +1 1 and -1 are all valid numbers.
@@ -74,17 +74,17 @@ static int	arg_is_zero(char *av)
 	return (1);
 }
 
-/* is_correct_input:
+/* This function
 *   Checks if the given arguments are all numbers, without duplicates.
 *   Return: 1 if the arguments are valid, 0 if not.
 */
-int	is_correct_input(char **av)
+static int	is_correct_input_help(char **av)
 {
 	int	i;
 	int	nb_zeros;
 
-	nb_zeros = 0;
 	i = 1;
+	nb_zeros = 0;
 	while (av[i])
 	{
 		if (!arg_is_number(av[i]))
@@ -97,4 +97,20 @@ int	is_correct_input(char **av)
 	if (have_duplicates(av))
 		return (0);
 	return (1);
+}
+
+/* is_correct_input:
+*   Checks if ac = 2 or ac > 2.
+*   it calls is_correct_input_help to do its work.
+*/
+int	is_correct_input(char **av, int ac)
+{
+	char	**av1;
+
+	if (ac == 2)
+	{
+		av1 = ft_split(av[1], ' ');
+		return (is_correct_input_help(av1));
+	}
+	return (is_correct_input_help(av));
 }

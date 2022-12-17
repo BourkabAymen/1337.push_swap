@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 13:47:42 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/30 17:39:25 by mcombeau         ###   ########.fr       */
+/*   Created: 2022/12/16 13:08:03 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/17 23:16:41 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,38 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
-	int				pos;
-	int				target_pos;
-	int				cost_a;
-	int				cost_b;
 	struct s_stack	*next;
 }	t_stack;
+
+typedef struct s_variables
+{
+	int				macro;
+	int				i;
+	int				j;
+	int				size;
+	int				stack_size;
+}	t_variables;
 
 /* Initialization */
 
 t_stack		*fill_stack_values(int ac, char **av);
-void		assign_index(t_stack *stack_a, int ac);
+t_stack		*fill_stack_values_help(int ac, char **av);
+t_stack		*fill_stack_values_help_prime(int ac, char **av);
+int			ft_strlen_array_string(char **av1);
+t_stack		*fill_stack_values(int ac, char **av);
 
 /* Sorting Algorithms */
 
 int			is_sorted(t_stack *stack);
-void		tiny_sort(t_stack **stack);
-void		sort(t_stack **stack_a, t_stack **stack_b);
-
-/* Position */
-
-int			get_lowest_index_position(t_stack **stack);
-void		get_target_position(t_stack **stack_a, t_stack **stack_b);
-
-/* Cost */
-
-void		get_cost(t_stack **stack_a, t_stack **stack_b);
-void		do_cheapest_move(t_stack **stack_a, t_stack **stack_b);
-
-/* Calculate Move */
-
-void		do_move(t_stack **a, t_stack **b, int cost_a, int cost_b);
+void		tiny_sort(t_stack **stack, int x);
+void		dupplicated_tab(int *tab, unsigned int size);
+void		to_tab_dupplicated(int ac, int *tab, char **av);
+int			*to_tab_sorted(int ac, char **av);
+int			*to_tab_sort_prime(int len, char **av);
+int			*to_tab_sort(int ac, char **av);
+void		sort_int_tab(int *tab, unsigned int size);
+void		three_plus_sort(t_stack **stack_a, t_stack **stack_b, int *tab,
+				t_variables *variables);
 
 /* Operations */
 
@@ -90,9 +91,26 @@ void		exit_error(t_stack **stack_a, t_stack **stack_b);
 
 /* Input Check */
 
-int			is_correct_input(char **av);
+int			is_correct_input(char **av, int ac);
 int			is_digit(char c);
 int			is_sign(char c);
 int			nbstr_cmp(const char *s1, const char *s2);
+char		**ft_split(char const *s, char c);
+
+/* Stack_to_stack */
+
+int			existe_int_tab(int value, int *tab, int i, int macro);
+void		stack_a_to_stack_b(t_stack **stack_a, t_stack **stack_b, int *tab,
+				t_variables *variables);
+void		stack_b_to_stack_a(t_stack **stack_a, t_stack **stack_b, int *tab,
+				int macro);
+void		do_ra_pb(t_stack **stack_a, t_stack **stack_b, int *tab,
+				t_variables variables);
+void		do_ra_pb_help(t_stack **stack_a, t_stack **stack_b, int *tab,
+				t_variables *variables);
+void		do_rb_pa(t_stack **stack_a, t_stack **stack_b, int *tab,
+				t_variables variables);
+void		do_rb_pa_help(t_stack **stack_a, t_stack **stack_b, int *tmp,
+				int *k);
 
 #endif
