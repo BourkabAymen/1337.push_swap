@@ -3,114 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abourkab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 13:08:03 by abourkab          #+#    #+#             */
-/*   Updated: 2022/12/17 23:16:41 by abourkab         ###   ########.fr       */
+/*   Created: 2022/12/18 22:24:22 by abourkab          #+#    #+#             */
+/*   Updated: 2022/12/18 22:24:26 by abourkab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-typedef struct s_stack
+typedef struct s_list
 {
-	int				value;
+	int				data;
 	int				index;
-	struct s_stack	*next;
-}	t_stack;
+	struct s_list	*next;
+}					t_list;
 
-typedef struct s_variables
+typedef struct s_struct
 {
-	int				macro;
-	int				i;
-	int				j;
-	int				size;
-	int				stack_size;
-}	t_variables;
+	int			min;
+	int			max;
+	int			mid;
+	int			to_be_push;
+}				t_struct;
 
-/* Initialization */
+// push_swap.c
+void	chek_duplicate(int argc, char **argv);
+t_list	*create_stack(int argc, char **argv);
+void	sort_function(t_list **stack_a, t_list **stack_b, int argc);
 
-t_stack		*fill_stack_values(int ac, char **av);
-t_stack		*fill_stack_values_help(int ac, char **av);
-t_stack		*fill_stack_values_help_prime(int ac, char **av);
-int			ft_strlen_array_string(char **av1);
-t_stack		*fill_stack_values(int ac, char **av);
+// utiles_part_one.c
+void	ft_putstr(char *str);
+int		ft_atoi(char *str);
+void	ft_error(unsigned int n, int signe);
+int		min_index(t_list *list);
+void	ft_putstr_error(char *str);
 
-/* Sorting Algorithms */
+// utiles_part_two.c
+int		stack_size(t_list *stack);
+int		index_position(t_list *stack, int index);
 
-int			is_sorted(t_stack *stack);
-void		tiny_sort(t_stack **stack, int x);
-void		dupplicated_tab(int *tab, unsigned int size);
-void		to_tab_dupplicated(int ac, int *tab, char **av);
-int			*to_tab_sorted(int ac, char **av);
-int			*to_tab_sort_prime(int len, char **av);
-int			*to_tab_sort(int ac, char **av);
-void		sort_int_tab(int *tab, unsigned int size);
-void		three_plus_sort(t_stack **stack_a, t_stack **stack_b, int *tab,
-				t_variables *variables);
+// check_error.c
+void	check_error(int argc, char **argv);
+void	check_empty_arg(char **argv);
+void	check_is_digit(int argc, char **argv);
+void	check_duplicate(int argc, char **argv);
+int		check_sort(int argc, char **argv);
 
-/* Operations */
+// operations.c
+void	s(t_list **list, char s);
+void	ss(t_list *list_a, t_list *list_b);
+void	p(t_list **list_a, t_list **list_b, char p);
+void	r(t_list **list, char r);
+void	rr_a_b(t_list **list, char rr);
 
-void		do_pa(t_stack **stack_a, t_stack **stack_b);
-void		do_pb(t_stack **stack_a, t_stack **stack_b);
-void		do_sa(t_stack **stack_a);
-void		do_sb(t_stack **stack_b);
-void		do_ss(t_stack **stack_a, t_stack **stack_b);
-void		do_ra(t_stack **stack_a);
-void		do_rb(t_stack **stack_b);
-void		do_rr(t_stack **stack_a, t_stack **stack_b);
-void		do_rrr(t_stack **stack_a, t_stack **stack_b);
-void		do_rra(t_stack **stack_a);
-void		do_rrb(t_stack **stack_b);
+// operations2.c
+t_list	*rrr_a_b(t_list *list);
+void	rrr(t_list **list_a, t_list **list_b);
+void	r_a_b(t_list *list);
+void	rr(t_list *list_a, t_list *list_b);
+void	ss_a_b(t_list *list);
 
-/* Stack Functions */
+// function_3_4_5.c
+void	if_1(t_list **stack_a);
+void	if_5(t_list **stack_a);
+void	function_3(t_list **stack_a);
+void	function_4(t_list **stack_a, t_list **stack_b);
+void	function_5(t_list **stack_a, t_list **stack_b);
 
-t_stack		*get_stack_bottom(t_stack *stack);
-t_stack		*get_stack_before_bottom(t_stack *stack);
-t_stack		*stack_new(int value);
-void		stack_add_bottom(t_stack **stack, t_stack *new);
-int			get_stack_size(t_stack	*stack);
+// big_sort_function_one.c
+void	function_big_sort(t_list **stack_a, t_list **stack_b);
+void	big_sort(t_list **stack_a, t_list **stack_b, int size);
+void	push_big_sort(t_list **stack_a, t_list **stack_b, int index, int *r1);
+void	big_push_to_stack_a(t_list **stack_a, t_list **stack_b,
+			int big, int down_stk_a);
+void	push_big_sort_to_a(t_list **stack_a, t_list **stack_b,
+			int big, int size);
 
-/* Utils */
+// big_sort_function_two.c
+int		to_be_push(int size);
+int		*return1(int a, int b);
 
-void		free_stack(t_stack **stack);
-long int	ft_atoi(const char *str);
-void		ft_putstr(char *str);
-int			nb_abs(int nb);
+// big_sort_function_utiles.c
+void	push_to_b(t_list **stack_b, t_list **stack_a, int index, int mid);
+void	index__1(t_list **stack_a);
+int		find_index(t_list *list, int big);
+int		down_stack(t_list *list);
 
-/* Error */
-
-void		exit_error(t_stack **stack_a, t_stack **stack_b);
-
-/* Input Check */
-
-int			is_correct_input(char **av, int ac);
-int			is_digit(char c);
-int			is_sign(char c);
-int			nbstr_cmp(const char *s1, const char *s2);
-char		**ft_split(char const *s, char c);
-
-/* Stack_to_stack */
-
-int			existe_int_tab(int value, int *tab, int i, int macro);
-void		stack_a_to_stack_b(t_stack **stack_a, t_stack **stack_b, int *tab,
-				t_variables *variables);
-void		stack_b_to_stack_a(t_stack **stack_a, t_stack **stack_b, int *tab,
-				int macro);
-void		do_ra_pb(t_stack **stack_a, t_stack **stack_b, int *tab,
-				t_variables variables);
-void		do_ra_pb_help(t_stack **stack_a, t_stack **stack_b, int *tab,
-				t_variables *variables);
-void		do_rb_pa(t_stack **stack_a, t_stack **stack_b, int *tab,
-				t_variables variables);
-void		do_rb_pa_help(t_stack **stack_a, t_stack **stack_b, int *tmp,
-				int *k);
-
+// index.c
+int		get_index(int stack_a_data, t_list *list);
+void	ft_index(int argc, t_list *stack_a);
 #endif

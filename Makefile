@@ -3,40 +3,34 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abourkab <abourkab@student.42.fr>          +#+  +:+       +#+         #
+#    By: abourkab <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/16 13:04:02 by abourkab          #+#    #+#              #
-#    Updated: 2022/12/17 23:13:14 by abourkab         ###   ########.fr        #
+#    Created: 2022/12/18 22:20:57 by abourkab          #+#    #+#              #
+#    Updated: 2022/12/18 22:21:06 by abourkab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= push_swap
+NAME = push_swap
 
-SRCS	= main.c \
-		input_check.c input_check_utils.c \
-		stack_to_stack_one.c \
-		stack_to_stack_two.c \
-		swap.c push.c rotate.c reverse_rotate.c \
-		sort_tiny.c\
-		stack.c fill.c \
-		utils.c ft_split.c sort.c sort_prime.c\
+SRCS = push_swap.c utiles_part_one.c check_error.c operations.c \
+	operations2.c function_3_4_5.c index.c utiles_part_two.c \
+	big_sort_function_one.c \
+	big_sort_function_two.c big_sort_function_utiles.c \
 
-OBJS	= $(SRCS:.c=.o)
+CC = cc
+RM = rm -rf
+CFLAGS = -Wall -Werror -Wextra
 
-CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+OBJS = $(SRCS:.c=.o)
 
-all: $(NAME) 
-
+all: $(NAME)
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
